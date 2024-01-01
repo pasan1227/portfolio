@@ -2,9 +2,12 @@ import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
-import corpcommentImg from "@/public/corpcomment.png";
-import rmtdevImg from "@/public/rmtdev.png";
-import wordanalyticsImg from "@/public/wordanalytics.png";
+import bvote from "@/public/assets/bvote.png";
+import airbnb from "@/public/assets/airbnb.png";
+import crown from "@/public/assets/crown.png";
+import amazon from "@/public/assets/amazon.png";
+import proshop from "@/public/assets/proshop.png";
+import netflix from "@/public/assets/netflix.png";
 
 export const links = [
   {
@@ -35,52 +38,71 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: "Graduated bootcamp",
-    location: "Miami, FL",
+    title: "Software Engineer Intern",
+    location: "OREL IT, Maharagama",
     description:
-      "I graduated after 6 months of studying. I immediately found a job as a front-end developer.",
-    icon: React.createElement(LuGraduationCap),
-    date: "2019",
-  },
-  {
-    title: "Front-End Developer",
-    location: "Orlando, FL",
-    description:
-      "I worked as a front-end developer for 2 years in 1 job and 1 year in another job. I also upskilled to the full stack.",
+      "As a Software Engineer Intern, I aided the Engineering team in software development and debugging. I also upskilled to a full-stack developer, mastering front-end (HTML, CSS, JavaScript, React, Figma) and back-end (Node.js, MySQL, MQTT) technologies, enhancing my overall contribution to the team.",
     icon: React.createElement(CgWorkAlt),
-    date: "2019 - 2021",
-  },
-  {
-    title: "Full-Stack Developer",
-    location: "Houston, TX",
-    description:
-      "I'm now a full-stack developer working as a freelancer. My stack includes React, Next.js, TypeScript, Tailwind, Prisma and MongoDB. I'm open to full-time opportunities.",
-    icon: React.createElement(FaReact),
-    date: "2021 - present",
+    date: "2022 JAN - 2022 AUG",
   },
 ] as const;
 
 export const projectsData = [
   {
-    title: "CorpComment",
+    title: "B-Vote",
     description:
-      "I worked as a full-stack developer on this startup project for 2 years. Users can give public feedback to companies.",
-    tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
-    imageUrl: corpcommentImg,
+      "A blockchain based secure voting system with the ability to Create Polls, add candidates, share poll links & vote for candidates & view poll results.",
+    tags: ["React", "Near.sdk", "Bootstrap"],
+    imageUrl: bvote,
+    link: "https://github.com/pasan1227/blockchain-voting-app",
   },
   {
-    title: "rmtDev",
+    title: "Airbnb Clone",
     description:
-      "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind", "Redux"],
-    imageUrl: rmtdevImg,
+      "A fully functional Airbnb clone with map search, date picker, and reservation functionality.",
+    tags: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Tailwind",
+      "Prisma",
+      "MongoDB",
+      "NextAuth",
+    ],
+    imageUrl: airbnb,
+    link: "https://github.com/pasan1227/airbnb-clone",
   },
   {
-    title: "Word Analytics",
+    title: "Crown Clothing",
     description:
-      "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
-    tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
-    imageUrl: wordanalyticsImg,
+      "A fully functional ecommerce store with cart, checkout, and payment processing.",
+    tags: ["React", "Firebase", "Styled Components", "OAuth"],
+    imageUrl: crown,
+    link: "https://github.com/pasan1227/crown-clothing",
+  },
+  {
+    title: "Proshop",
+    description:
+      "Ecommerce store with cart, checkout, and payment processing and admin dashboard to manage products, orders, and customers.",
+    tags: ["React", "Node.js", "Express", "MongoDB", "Redux", "PayPal"],
+    imageUrl: proshop,
+    link: "https://github.com/pasan1227/ProShop",
+  },
+  {
+    title: "Amazon Clone",
+    description:
+      "A fully functional Amazon clone with firebase authentication & stripe payments.",
+    tags: ["React", "Node,js", "Firebase", "Redux"],
+    imageUrl: amazon,
+    link: "https://github.com/pasan1227/amazon-clone",
+  },
+  {
+    title: "Netflix Clone",
+    description:
+      "A Netflix clone with firebase authentication & stripe payments.",
+    tags: ["React", "firebase", "Redux", "Stripe"],
+    imageUrl: netflix,
+    link: "https://github.com/pasan1227/netflix-2.0",
   },
 ] as const;
 
@@ -92,16 +114,15 @@ export const skillsData = [
   "React",
   "Next.js",
   "Node.js",
+  "Vue.js",
   "Git",
   "Tailwind",
   "Prisma",
   "MongoDB",
+  "MySQL",
+  "Firebase",
   "Redux",
-  "GraphQL",
-  "Apollo",
   "Express",
-  "PostgreSQL",
   "Python",
-  "Django",
   "Framer Motion",
 ] as const;

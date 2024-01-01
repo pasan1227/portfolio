@@ -54,6 +54,7 @@ export const projectsData = [
       "A blockchain based secure voting system with the ability to Create Polls, add candidates, share poll links & vote for candidates & view poll results.",
     tags: ["React", "Near.sdk", "Bootstrap"],
     imageUrl: bvote,
+    link: "https://github.com/pasan1227/blockchain-voting-app",
   },
   {
     title: "Airbnb Clone",
@@ -69,6 +70,7 @@ export const projectsData = [
       "NextAuth",
     ],
     imageUrl: airbnb,
+    link: "https://github.com/pasan1227/airbnb-clone",
   },
   {
     title: "Crown Clothing",
@@ -76,6 +78,7 @@ export const projectsData = [
       "A fully functional ecommerce store with cart, checkout, and payment processing.",
     tags: ["React", "Firebase", "Styled Components", "OAuth"],
     imageUrl: crown,
+    link: "https://github.com/pasan1227/crown-clothing",
   },
   {
     title: "Proshop",
@@ -83,6 +86,7 @@ export const projectsData = [
       "Ecommerce store with cart, checkout, and payment processing and admin dashboard to manage products, orders, and customers.",
     tags: ["React", "Node.js", "Express", "MongoDB", "Redux", "PayPal"],
     imageUrl: proshop,
+    link: "https://github.com/pasan1227/ProShop",
   },
   {
     title: "Amazon Clone",
@@ -90,6 +94,7 @@ export const projectsData = [
       "A fully functional Amazon clone with firebase authentication & stripe payments.",
     tags: ["React", "Node,js", "Firebase", "Redux"],
     imageUrl: amazon,
+    link: "https://github.com/pasan1227/amazon-clone",
   },
   {
     title: "Netflix Clone",
@@ -97,6 +102,7 @@ export const projectsData = [
       "A Netflix clone with firebase authentication & stripe payments.",
     tags: ["React", "firebase", "Redux", "Stripe"],
     imageUrl: netflix,
+    link: "https://github.com/pasan1227/netflix-2.0",
   },
 ] as const;
 

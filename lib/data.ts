@@ -86,7 +86,7 @@ export const projectsData = [
       "Ecommerce store with cart, checkout, and payment processing and admin dashboard to manage products, orders, and customers.",
     tags: ["React", "Node.js", "Express", "MongoDB", "Redux", "PayPal"],
     imageUrl: proshop,
-    link: "https://github.com/pasan1227/ProShop",
+    link: "https://proshop-y96f.onrender.com/",
   },
   {
     title: "Amazon Clone",

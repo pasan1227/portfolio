@@ -2,9 +2,12 @@ import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
-import corpcommentImg from "@/public/corpcomment.png";
-import rmtdevImg from "@/public/rmtdev.png";
-import wordanalyticsImg from "@/public/wordanalytics.png";
+import bvote from "@/public/assets/bvote.png";
+import airbnb from "@/public/assets/airbnb.png";
+import crown from "@/public/assets/crown.png";
+import amazon from "@/public/assets/amazon.png";
+import proshop from "@/public/assets/proshop.png";
+import netflix from "@/public/assets/netflix.png";
 
 export const links = [
   {
@@ -62,25 +65,54 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: "CorpComment",
+    title: "B-Vote",
     description:
-      "I worked as a full-stack developer on this startup project for 2 years. Users can give public feedback to companies.",
-    tags: ["React", "Next.js", "MongoDB", "Tailwind", "Prisma"],
-    imageUrl: corpcommentImg,
+      "A blockchain based secure voting system with the ability to Create Polls, add candidates, share poll links & vote for candidates & view poll results.",
+    tags: ["React", "Near.sdk", "Bootstrap"],
+    imageUrl: bvote,
   },
   {
-    title: "rmtDev",
+    title: "Airbnb Clone",
     description:
-      "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind", "Redux"],
-    imageUrl: rmtdevImg,
+      "A fully functional Airbnb clone with map search, date picker, and reservation functionality.",
+    tags: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Tailwind",
+      "Prisma",
+      "MongoDB",
+      "NextAuth",
+    ],
+    imageUrl: airbnb,
   },
   {
-    title: "Word Analytics",
+    title: "Crown Clothing",
     description:
-      "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
-    tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
-    imageUrl: wordanalyticsImg,
+      "A fully functional ecommerce store with cart, checkout, and payment processing.",
+    tags: ["React", "Firebase", "Styled Components", "OAuth"],
+    imageUrl: crown,
+  },
+  {
+    title: "Proshop",
+    description:
+      "Ecommerce store with cart, checkout, and payment processing and admin dashboard to manage products, orders, and customers.",
+    tags: ["React", "Node.js", "Express", "MongoDB", "Redux", "PayPal"],
+    imageUrl: proshop,
+  },
+  {
+    title: "Amazon Clone",
+    description:
+      "A fully functional Amazon clone with firebase authentication & stripe payments.",
+    tags: ["React", "Node,js", "Firebase", "Redux"],
+    imageUrl: amazon,
+  },
+  {
+    title: "Netflix Clone",
+    description:
+      "A Netflix clone with firebase authentication & stripe payments.",
+    tags: ["React", "firebase", "Redux", "Stripe"],
+    imageUrl: netflix,
   },
 ] as const;
 

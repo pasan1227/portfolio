@@ -21,21 +21,19 @@ export default function About() {
       <SectionHeading>About me</SectionHeading>
 
       <p className="mb-3">
-        I'm a final-year{' '}
+        I am a passionate and driven{' '}
         <span className="font-medium">
-          Computer Science undergraduate at Staffordshire University (UK)
-        </span>
-        , and currently learning{' '}
-        <span className="font-medium">full-stack web development</span>.{' '}
-        <span className="italic">My favorite part of programming</span> is the
-        problem-solving aspect. I <span className="underline">love</span> the
-        feeling of finally figuring out a solution to a problem. My core stack
-        is{' '}
+          BSc (Hons) Computer Science graduate from Staffordshire University,{' '}
+        </span>{' '}
+        specializing in <span className="italic">full-stack development</span>{' '}
+        with a strong emphasis on{' '}
+        <span className="underline">front-end technologies.</span> With{' '}
+        <span className="font-medium">one year of hands-on experience</span> in
+        the field, I have honed my skills and expertise in crafting seamless
+        user experiences using cutting-edge technologies. My core stack is{' '}
         <span className="font-medium">
           React, Next.js, Node.js, and MongoDB
         </span>
-        . I am always looking to learn new technologies. I am currently working
-        as a <span className="font-medium">Trainee Software Engineer</span>.
       </p>
 
       <p>
@@ -46,3 +44,7 @@ export default function About() {
     </motion.section>
   );
 }
+
+// I am a passionate and driven <span className="font-medium">BSc (Hons) Computer Science graduate from Staffordshire University, </span> specializing in  <span className="italic">full-stack development</span> with a strong emphasis on <span className="underline">front-end technologies.</span> With <span className="font-medium">one year of hands-on experience</span> in the field, I have honed my skills and expertise in crafting seamless user experiences using cutting-edge technologies.
+
+// Driven by a relentless curiosity and a commitment to continuous learning, I am always seeking to expand my knowledge and stay abreast of the latest developments in the ever-evolving landscape of technology. I am excited about the opportunities that lie ahead and am eager to contribute my skills to innovative projects and teams. Let's connect and explore how we can collaborate to bring ideas to life.

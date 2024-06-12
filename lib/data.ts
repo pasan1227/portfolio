@@ -8,6 +8,7 @@ import crown from '@/public/assets/crown.png';
 import amazon from '@/public/assets/amazon.png';
 import proshop from '@/public/assets/proshop.png';
 import netflix from '@/public/assets/netflix.png';
+import apple from '@/public/assets/apple.png';
 
 export const links = [
   {
@@ -47,22 +48,38 @@ export const experiencesData = [
   },
   {
     title: 'Trainee Software Engineer',
-    location: 'Sphiria Digital Studio',
+    location: 'Sphiria Digital Studio, (Remote)',
     description:
-      'As a Trainee Software Engineer, I am currently immersed in a dynamic learning environment focused on cutting-edge technologies. My primary focus lies in utilizing React, TypeScript, Next.js, Prisma, and MongoDB to develop innovative software solutions. Through hands-on experience and mentorship, I am honing my skills in frontend and backend development, gaining proficiency in building responsive and scalable applications. Embracing challenges and continuously expanding my knowledge base, I am eager to contribute to impactful projects and grow within the realm of software engineering.',
+      'As a Trainee Software Engineer, I improved the responsiveness of a subscription-based service project, optimizing user experience and ensuring seamless access for clients. Additionally, I enhanced the functionality and responsiveness of a Custom Company Management system by integrating modules that improved workflow management. Leveraging innovative technologies, I optimized performance and user experience within the platform. I also actively participated in code reviews and knowledge-sharing sessions, fostering a collaborative development environment.',
     icon: React.createElement(CgWorkAlt),
-    date: '2024 JAN - Present',
+    date: '2024 JAN - 2024 APR',
+  },
+  {
+    title: 'Junior Software Engineer',
+    location: 'Sphiria Digital Studio, (Remote)',
+    description:
+      'As a Junior Software Engineer, I designed and developed a visually stunning NFT website with responsive layouts and captivating animations using Framer Motion, creating a dynamic online presence for the company. Additionally, I played an integral role in developing a customer portal project, collaborating closely with the team to refine its design and implement robust functionalities, significantly enhancing user engagement and satisfaction.',
+    icon: React.createElement(CgWorkAlt),
+    date: '2024 APR - Present',
   },
 ] as const;
 
 export const projectsData = [
+  {
+    title: 'Apple',
+    description:
+      'Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects. From custom animations to animated 3D models.',
+    tags: ['React', 'GSAP', 'Three.js'],
+    imageUrl: apple,
+    link: 'https://resonant-trifle-f823f4.netlify.app/',
+  },
   {
     title: 'B-Vote',
     description:
       'A blockchain based secure voting system with the ability to Create Polls, add candidates, share poll links & vote for candidates & view poll results.',
     tags: ['React', 'Near.sdk', 'Bootstrap'],
     imageUrl: bvote,
-    link: "https://resonant-trifle-f823f4.netlify.app/",
+    link: 'https://resonant-trifle-f823f4.netlify.app/',
   },
   {
     title: 'Airbnb Clone',
@@ -86,7 +103,7 @@ export const projectsData = [
       'A fully functional ecommerce store with cart, checkout, and payment processing.',
     tags: ['React', 'Firebase', 'Styled Components', 'OAuth'],
     imageUrl: crown,
-    link: "https://dazzling-frangipane-0d2cc8.netlify.app/",
+    link: 'https://dazzling-frangipane-0d2cc8.netlify.app/',
   },
   {
     title: 'Proshop',
@@ -94,7 +111,7 @@ export const projectsData = [
       'Ecommerce store with cart, checkout, and payment processing and admin dashboard to manage products, orders, and customers.',
     tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Redux', 'PayPal'],
     imageUrl: proshop,
-    link: "https://proshop-y96f.onrender.com/",
+    link: 'https://proshop-y96f.onrender.com/',
   },
   {
     title: 'Amazon Clone',
@@ -102,7 +119,7 @@ export const projectsData = [
       'A fully functional Amazon clone with firebase authentication & stripe payments.',
     tags: ['React', 'Node,js', 'Firebase', 'Redux'],
     imageUrl: amazon,
-    link: "https://clone-98547.web.app/",
+    link: 'https://clone-98547.web.app/',
   },
   {
     title: 'Netflix Clone',
@@ -110,7 +127,7 @@ export const projectsData = [
       'A Netflix clone with firebase authentication & stripe payments.',
     tags: ['React', 'firebase', 'Redux', 'Stripe'],
     imageUrl: netflix,
-    link: "https://netflix-2-0.web.app/",
+    link: 'https://netflix-2-0.web.app/',
   },
 ] as const;
 
@@ -132,5 +149,6 @@ export const skillsData = [
   'Redux',
   'Express',
   'Python',
+  'GSAP',
   'Framer Motion',
 ] as const;

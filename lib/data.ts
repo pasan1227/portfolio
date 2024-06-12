@@ -71,7 +71,7 @@ export const projectsData = [
       'Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects. From custom animations to animated 3D models.',
     tags: ['React', 'GSAP', 'Three.js'],
     imageUrl: apple,
-    link: 'https://resonant-trifle-f823f4.netlify.app/',
+    link: 'https://apple-clone-eight-sandy.vercel.app/',
   },
   {
     title: 'B-Vote',

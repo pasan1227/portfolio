@@ -70,6 +70,9 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
   icons: {
     icon: "/favicon.ico",
   },

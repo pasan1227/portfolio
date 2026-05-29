@@ -1,117 +1,185 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { BsArrowRight, BsLinkedin } from "react-icons/bs";
-import { HiDownload } from "react-icons/hi";
-import { FaGithubSquare } from "react-icons/fa";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { BsArrowRight, BsLinkedin, BsGithub } from "react-icons/bs";
 
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/ActiveSectionContext";
 
-export default function Intro() {
-  const { ref } = useSectionInView("Home", 0.5);
+const rise = {
+  hidden: { opacity: 0, y: 28 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: 0.08 * i, ease: "easeOut" as const },
+  }),
+};
 
+export default function Intro() {
+  const { ref } = useSectionInView("Home", 0.4);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+
+  const reduce = useReducedMotion();
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: portraitRef,
+    offset: ["start start", "end start"],
+  });
+  const portraitY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, -70]);
+  const frameY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, 50]);
 
   return (
     <section
       ref={ref}
       id="home"
-      className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
+      className="mx-auto flex min-h-screen max-w-wide scroll-mt-28 flex-col justify-center px-5 pb-16 pt-32 sm:px-8"
     >
-      <div className="flex items-center justify-center">
-        <div className="relative">
+      <div className="grid items-center gap-10 lg:grid-cols-[1.5fr_1fr]">
+        {/* Left — statement */}
+        <div>
+          <motion.p custom={0} variants={rise} initial="hidden" animate="show" className="eyebrow">
+            Pasan Ratnayake — Full-stack Engineer
+          </motion.p>
+
+          <motion.h1
+            custom={1}
+            variants={rise}
+            initial="hidden"
+            animate="show"
+            className="mt-6 font-display text-display font-extrabold text-bone"
+          >
+            I build fast,
+            <br />
+            <span className="text-volt">production-grade</span>
+            <br />
+            web products.
+          </motion.h1>
+
+          <motion.p
+            custom={2}
+            variants={rise}
+            initial="hidden"
+            animate="show"
+            className="mt-8 max-w-xl text-lg leading-relaxed text-bone-muted"
+          >
+            I&apos;m a full-stack engineer with 2+ years building production web
+            apps in{" "}
+            <span className="text-bone">React, Next.js &amp; NestJS</span> — from
+            compliance dashboards to school platforms. Open to elite engineering
+            roles and select freelance work.
+          </motion.p>
+
           <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "tween", duration: 0.2 }}
+            custom={3}
+            variants={rise}
+            initial="hidden"
+            animate="show"
+            className="mt-4 flex flex-wrap items-center gap-3"
+          >
+            <Link
+              href="#work"
+              onClick={() => {
+                setActiveSection("Work");
+                setTimeOfLastClick(Date.now());
+              }}
+              className="btn-volt group"
+            >
+              See selected work
+              <BsArrowRight className="transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="#contact"
+              onClick={() => {
+                setActiveSection("Contact");
+                setTimeOfLastClick(Date.now());
+              }}
+              className="btn-ghost"
+            >
+              Start a conversation
+            </Link>
+            <div className="flex items-center gap-2 pl-1">
+              <a
+                href="https://github.com/pasan1227"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-bone-muted transition-colors hover:border-volt hover:text-volt"
+              >
+                <BsGithub />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/pasanratnayake/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-bone-muted transition-colors hover:border-volt hover:text-volt"
+              >
+                <BsLinkedin />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* honest credibility row */}
+          <motion.dl
+            custom={4}
+            variants={rise}
+            initial="hidden"
+            animate="show"
+            className="mt-12 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/10 pt-7 font-mono text-xs uppercase tracking-wider text-bone-dim"
+          >
+            <div>
+              <dt>Experience</dt>
+              <dd className="mt-1 text-2xl font-bold tracking-normal text-bone">2+ yrs</dd>
+            </div>
+            <div>
+              <dt>Production systems</dt>
+              <dd className="mt-1 text-2xl font-bold tracking-normal text-bone">6+</dd>
+            </div>
+            <div>
+              <dt>Credential</dt>
+              <dd className="mt-1 text-2xl font-bold tracking-normal text-bone">BSc (Hons)</dd>
+            </div>
+          </motion.dl>
+        </div>
+
+        {/* Right — portrait */}
+        <motion.div
+          ref={portraitRef}
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="relative mx-auto hidden w-full max-w-sm lg:block"
+        >
+          <motion.div
+            style={{ y: portraitY }}
+            className="surface relative overflow-hidden rounded-3xl p-3 will-change-transform"
           >
             <Image
-              src="/assets/pasan.png"
-              alt="Pasan portrait"
-              width="192"
-              height="192"
-              quality="95"
-              priority={true}
-              className="h-36 w-36 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
+              src="/assets/pasan.jpg"
+              alt="Pasan Ratnayake"
+              width={480}
+              height={560}
+              quality={95}
+              priority
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
             />
+            <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full bg-ink-950/80 px-3 py-1.5 text-xs font-medium text-bone">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-volt opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-volt" />
+              </span>
+              Available for work
+            </div>
           </motion.div>
-          <motion.span
-            className="absolute bottom-0 right-0 text-4xl"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 125,
-              delay: 0.1,
-              duration: 0.7,
-            }}
-          >
-            👋🏻
-          </motion.span>
-        </div>
+          <motion.div
+            style={{ y: frameY }}
+            className="pointer-events-none absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border border-volt/40 will-change-transform"
+          />
+        </motion.div>
       </div>
-
-      <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <span className="font-bold">Hello, I'm Pasan.</span> I'm a{" "}
-        <span className="font-bold">full-stack developer</span> with{" "}
-        <span className="font-bold">1+ years</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>. My focus is{" "}
-        <span className="underline">React (Next.js)</span>.
-      </motion.h1>
-
-      <motion.div
-        className="flex flex-col sm:flex-row items-center justify-center gap-3 px-4 text-lg font-medium"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.1,
-        }}
-      >
-        <Link
-          href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-3 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
-          onClick={() => {
-            setActiveSection("Contact");
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          Contact me here{" "}
-          <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
-        </Link>
-
-        <a
-          className="group bg-white px-7 py-3 flex items-center gap-3 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="/CV.pdf"
-          download
-        >
-          Download CV{" "}
-          <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/70"
-          href="https://www.linkedin.com/in/pasanratnayake/"
-          target="_blank"
-        >
-          <BsLinkedin />
-        </a>
-
-        <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/70"
-          href="https://github.com/pasan1227"
-          target="_blank"
-        >
-          <FaGithubSquare />
-        </a>
-      </motion.div>
     </section>
   );
 }

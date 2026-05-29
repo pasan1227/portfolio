@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import { projectsData } from "@/lib/data";
 
-type ProjectProps = (typeof projectsData)[number];
+type ProjectProps = (typeof projectsData)[number] & { index: number };
 
 export default function Project({
   title,
@@ -14,63 +14,50 @@ export default function Project({
   tags,
   imageUrl,
   link,
+  index,
 }: ProjectProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "1.33 1"],
-  });
-  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
-
   return (
-    <motion.div
-      ref={ref}
-      style={{
-        scale: scaleProgess,
-        opacity: opacityProgess,
-      }}
-      className="group mb-3 sm:mb-8 last:mb-0"
+    <motion.a
+      href={link}
+      target="_blank"
+      rel="noreferrer"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: (index % 2) * 0.08 }}
+      className="surface surface-hover group flex flex-col overflow-hidden rounded-3xl"
     >
-      <section
-        className="bg-gray-100 max-w-[42rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[20rem] hover:bg-gray-200 transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 dark:hover:bg-white/20 cursor-pointer"
-        onClick={() => window.open(link, "_blank")}
-      >
-        <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full sm:group-even:ml-[18rem]">
-          <h3 className="text-2xl font-semibold">{title}</h3>
-          <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70">
-            {description}
-          </p>
-          <ul className="flex flex-wrap mt-4 gap-2 sm:mt-auto">
-            {tags.map((tag, index) => (
-              <li
-                className="bg-black/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full dark:text-white/70"
-                key={index}
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
-        </div>
-
+      <div className="relative aspect-[16/10] overflow-hidden">
         <Image
           src={imageUrl}
-          alt="Project I worked on"
+          alt={`${title} — screenshot`}
           quality={95}
-          className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl
-        transition 
-        group-hover:scale-[1.04]
-        group-hover:-translate-x-3
-        group-hover:translate-y-3
-        group-hover:-rotate-2
-
-        group-even:group-hover:translate-x-3
-        group-even:group-hover:translate-y-3
-        group-even:group-hover:rotate-2
-
-        group-even:right-[initial] group-even:-left-40"
+          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
         />
-      </section>
-    </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-850 via-transparent to-transparent" />
+        <span className="absolute left-5 top-5 font-display text-2xl font-extrabold text-bone drop-shadow-lg">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <span className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-ink-950/70 text-bone transition-colors duration-300 group-hover:bg-volt group-hover:text-ink-950">
+          <FiArrowUpRight className="text-lg" />
+        </span>
+      </div>
+
+      <div className="flex flex-1 flex-col p-7">
+        <h3 className="font-display text-2xl font-bold text-bone transition-colors group-hover:text-volt">
+          {title}
+        </h3>
+        <p className="mt-2.5 flex-1 text-sm leading-relaxed text-bone-muted">
+          {description}
+        </p>
+        <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5 font-mono text-[0.7rem] uppercase tracking-wider text-bone-dim">
+          {tags.map((tag) => (
+            <li key={tag} className="before:mr-3 before:text-volt before:content-['/']">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.a>
   );
 }

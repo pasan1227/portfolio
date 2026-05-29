@@ -1,19 +1,37 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
 import "./globals.css";
 import Header from "@/components/Header";
 import ActiveSectionContextProvider from "@/context/ActiveSectionContext";
 import Footer from "@/components/Footer";
-import ThemeSwitch from "@/components/ThemeSwitch";
-import ThemeContextProvider from "@/context/ThemeContext";
+import SmoothScroll from "@/components/SmoothScroll";
+import ScrollProgress from "@/components/ScrollProgress";
+import Backdrop from "@/components/Backdrop";
 
-const inter = Inter({ subsets: ["latin"] });
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const body = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Pasan | Personal Portfolio",
-  description: "Pasan is a full-stack developer with 1+ years of experience.",
+  title: "Pasan Ratnayake — Full-stack Engineer",
+  description:
+    "Full-stack software engineer building fast, production-grade web products with React, Next.js & Node. Open to elite roles and select freelance work.",
 };
 
 export default function RootLayout({
@@ -22,21 +40,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en">
       <body
-        className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
+        className={`${display.variable} ${body.variable} ${mono.variable} font-sans relative min-h-screen overflow-x-hidden bg-ink-950 text-bone`}
       >
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]"></div>
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
-        <ThemeContextProvider>
-          <ActiveSectionContextProvider>
-            <Header />
-            {children}
-            <Footer />
-            <Toaster position="top-center" />
-            <ThemeSwitch />
-          </ActiveSectionContextProvider>
-        </ThemeContextProvider>
+        {/* Hairline grid + one signature glow that drifts on scroll (transform
+            only — the blur layer is never repainted). */}
+        <Backdrop />
+
+        <ScrollProgress />
+
+        <ActiveSectionContextProvider>
+          <Header />
+          <SmoothScroll>
+            <main className="relative">{children}</main>
+          </SmoothScroll>
+          <Footer />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: { background: "#181818", color: "#f4f4ee", border: "1px solid rgba(255,255,255,0.1)" },
+            }}
+          />
+        </ActiveSectionContextProvider>
       </body>
     </html>
   );

@@ -1,21 +1,32 @@
 import About from "@/components/About";
 import Contact from "@/components/Contact";
+import DualTrack from "@/components/DualTrack";
 import Experience from "@/components/Experience";
 import Intro from "@/components/Intro";
+import Marquee from "@/components/Marquee";
 import Projects from "@/components/Projects";
-import SectionDivider from "@/components/SectionDivider";
 import Skills from "@/components/Skills";
+
+const marqueeItems = [
+  "Full-stack Engineer",
+  "React · Next.js · Node",
+  "Production-grade web",
+  "Open to roles",
+  "Freelance-ready",
+  "TypeScript",
+];
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center px-4">
+    <>
       <Intro />
-      <SectionDivider />
-      <About />
+      <Marquee items={marqueeItems} />
+      <DualTrack />
       <Projects />
       <Skills />
       <Experience />
+      <About />
       <Contact />
-    </main>
+    </>
   );
 }

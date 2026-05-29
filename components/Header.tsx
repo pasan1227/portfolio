@@ -13,54 +13,71 @@ export default function Header() {
     useActiveSectionContext();
 
   return (
-    <header className="z-[999] relative">
+    <header className="fixed inset-x-0 top-0 z-[999] flex justify-center">
       <motion.div
-        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75"
-        initial={{ y: -100, x: "-50%", opacity: 0 }}
-        animate={{ y: 0, x: "-50%", opacity: 1 }}
-      ></motion.div>
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 240, damping: 26 }}
+        className="mt-4 flex w-[min(100%-1.5rem,82rem)] items-center justify-between gap-4 rounded-full border border-white/10 bg-ink-900/85 px-4 py-2.5 backdrop-blur-md sm:px-5"
+      >
+        {/* Wordmark */}
+        <Link
+          href="#home"
+          onClick={() => {
+            setActiveSection("Home");
+            setTimeOfLastClick(Date.now());
+          }}
+          className="flex items-center gap-2 font-display text-base font-bold tracking-tight text-bone"
+        >
+          <span className="h-2.5 w-2.5 rounded-full bg-volt" />
+          Pasan<span className="hidden text-bone-muted sm:inline">.dev</span>
+        </Link>
 
-      <nav className="flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
-        <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium text-gray-500 sm:w-[inital] sm:flex-nowrap sm:gap-5">
-          {links.map((link) => (
-            <motion.li
-              className="h-3/4 flex items-center justify-center relative"
-              key={link.hash}
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <Link
-                className={clsx(
-                  "flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition dark:text-gray-500 dark:hover:text-gray-300",
-                  {
-                    "text-gray-950 dark:text-gray-200":
-                      activeSection === link.name,
-                  }
-                )}
-                href={link.hash}
-                onClick={() => {
-                  setActiveSection(link.name);
-                  setTimeOfLastClick(Date.now());
-                }}
-              >
-                {link.name}
-
-                {link.name === activeSection && (
-                  <motion.span
-                    className="bg-gray-100 rounded-full absolute inset-0 -z-10 dark:bg-gray-800"
-                    layoutId="activeSection"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
+        {/* Nav */}
+        <nav className="hidden md:block">
+          <ul className="flex items-center gap-1">
+            {links.map((link) => {
+              const isActive = activeSection === link.name;
+              return (
+                <li key={link.hash} className="relative">
+                  <Link
+                    href={link.hash}
+                    onClick={() => {
+                      setActiveSection(link.name);
+                      setTimeOfLastClick(Date.now());
                     }}
-                  ></motion.span>
-                )}
-              </Link>
-            </motion.li>
-          ))}
-        </ul>
-      </nav>
+                    className={clsx(
+                      "relative z-10 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                      isActive ? "text-ink-950" : "text-bone-muted hover:text-bone"
+                    )}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 -z-10 rounded-full bg-volt"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        {/* CTA */}
+        <Link
+          href="#contact"
+          onClick={() => {
+            setActiveSection("Contact");
+            setTimeOfLastClick(Date.now());
+          }}
+          className="hidden shrink-0 rounded-full bg-volt px-5 py-2.5 text-sm font-semibold text-ink-950 transition-transform hover:scale-[1.04] active:scale-100 sm:inline-flex"
+        >
+          Let&apos;s talk
+        </Link>
+      </motion.div>
     </header>
   );
 }

@@ -2,10 +2,108 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  --line-color: #e5e7eb;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Lenis hands scroll control to JS; native smooth would fight it. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-ink-950 text-bone;
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  ::selection {
+    background: #c9ff3d;
+    color: #080808;
+  }
+
+  /* Signature-tinted scrollbar */
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080808;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #222;
+    border: 3px solid #080808;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c9ff3d;
+  }
+
+  :focus-visible {
+    outline: 2px solid #c9ff3d;
+    outline-offset: 3px;
+  }
 }
 
-.borderBlack {
-  @apply border border-black/10;
+@layer components {
+  /* Bold surface card (no backdrop-filter — keeps scroll buttery) */
+  .surface {
+    @apply border border-white/[0.08] bg-ink-850;
+  }
+  .surface-hover {
+    @apply transition-colors duration-300 hover:border-white/20 hover:bg-ink-800;
+  }
+
+  /* Solid volt button (black text on signature color) */
+  .btn-volt {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-volt px-7 py-3.5 text-sm font-semibold text-ink-950 transition-transform duration-200 hover:scale-[1.03] active:scale-100;
+  }
+  /* Outline button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-bone transition-colors duration-200 hover:border-volt hover:text-volt;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.3em] text-bone-muted;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-volt;
+  }
+}
+
+@layer utilities {
+  .text-volt {
+    color: #c9ff3d;
+  }
+  /* Hairline grid backdrop */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  /* Outlined "stroke" display text */
+  .text-stroke {
+    -webkit-text-stroke: 1.5px rgba(244, 244, 238, 0.35);
+    color: transparent;
+  }
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  .pause-on-hover:hover * {
+    animation-play-state: paused;
+  }
 }

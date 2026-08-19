@@ -91,7 +91,7 @@ const jsonLd = {
   "@type": "Person",
   name: siteConfig.name,
   url: siteUrl,
-  image: `${siteUrl}/assets/pasan.jpg`,
+  image: `${siteUrl}/assets/pasan.png`,
   jobTitle: siteConfig.jobTitle,
   description: siteConfig.description,
   worksFor: {

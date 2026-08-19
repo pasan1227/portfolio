@@ -158,7 +158,7 @@ export default function Intro() {
             className="surface relative overflow-hidden rounded-3xl p-3 will-change-transform"
           >
             <Image
-              src="/assets/pasan.jpg"
+              src="/assets/pasan.png"
               alt="Pasan Ratnayake"
               width={480}
               height={560}
